@@ -1,0 +1,6 @@
+namespace: tbauriedel
+name: hosts
+version: 0.0.0
+license:
+  - MIT
+readme: README.md

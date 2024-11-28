@@ -1,0 +1,11 @@
+---
+- name: Add IP address of all hosts from inventory to all hosts
+  lineinfile:
+    dest: /etc/hosts
+    regexp: '.*{{ item }}$'
+    line: "{{ hostvars[item].ansible_default_ipv4.address}} {{ hostvars[item].ansible_hostname }}"
+    state: present
+  when:
+    - hostvars[item].ansible_hostname is defined
+    - hostvars[item].ansible_default_ipv4.address is defined
+  with_items: "{{ groups['all'] }}"
